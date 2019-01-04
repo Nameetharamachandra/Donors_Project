@@ -1,4 +1,4 @@
-#Purpose: To create line plots of number of donations and number of giftcards 
+# Purpose: To create line plots of number of donations and number of giftcards 
 # received by individuals over time
 
 import pandas  as pd
