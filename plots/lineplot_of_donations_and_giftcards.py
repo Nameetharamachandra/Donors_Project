@@ -1,3 +1,6 @@
+#Purpose: To create line plots of number of donations and number of giftcards 
+# received by individuals over time
+
 import pandas  as pd
 import numpy as np
 from matplotlib import pyplot as plt
