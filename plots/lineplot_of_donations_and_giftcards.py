@@ -28,8 +28,6 @@ giftcards_2015=giftcards[(giftcards['date_purchased'].apply(lambda x:x[5:]) == '
 # create blank dataframe
 Data = pd.DataFrame(columns=['Date', 'Role'])
 
-# vivek comment: why do we have two counter initializations?
-count=0
 #plot graph for donations made and gift cards purchased by unique donor Id
 count=0
 
