@@ -26,8 +26,7 @@ giftcards= pd.read_csv("C://Users/Nameetha/Desktop/Stata/giftcards.csv")
 giftcards_2015=giftcards[(giftcards['date_purchased'].apply(lambda x:x[5:]) == '2015')]
 
 # create blank dataframe
-Data = pd.DataFrame(columns=['Date', 'Role'])
-
+Data = pd.DataFrame(columns=['Date','Role','acctid'])
 #plot graph for donations made and gift cards purchased by unique donor Id
 count=0
 
