@@ -9,7 +9,7 @@ import datetime
 import matplotlib.dates as mdates
 
  # Read the json file
-Total_donations = pd.read_csv("C://Users/Nameetha/Desktop/Stata/Donations_2015.csv")
+Total_donations = pd.read_csv("/home/test/donorschoose/Excel_Files/Donations_2015.csv")
 
 #Select unique donor Id's
 Unique_donations=Total_donations.drop_duplicates('_donor_acctid')
@@ -17,7 +17,7 @@ Unique_donations=Total_donations.drop_duplicates('_donor_acctid')
 account=Unique_donations._donor_acctid.tolist()
 
 #read giftcard csv
-giftcards= pd.read_csv("C:\\Users\\vivek4\\Downloads\\giftcards.csv")
+giftcards= pd.read_csv("/home/test/donorschoose/Excel_Files/giftcards.csv")
 
 #filter giftcard data for 2015
 giftcards_2015=giftcards[(giftcards['date_purchased'].apply(lambda x:x[5:]) == '2015')]
