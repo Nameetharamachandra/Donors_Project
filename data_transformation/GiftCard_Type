@@ -1,0 +1,33 @@
+To identify the type of purchase
+#To count the number of giftcards purchased by each unique buyer account
+import pandas  as pd
+from tqdm import tqdm
+import socket
+import sys
+if socket.gethostname()=='isds-research':
+    path='/home/test/donorschoose/raw_files/'
+else:
+    path=''
+print("Reading data file ....")
+giftcards = pd.read_csv(path+'opendata_giftcards000.gz', escapechar='\\', names=['_giftcardid', 'dollar_tier', '_buyer_acctid', 'buyer_city', 'buyer_state', 'buyer_zip', 'date_purchased', '_buyer_cartid', '_recipient_acctid', 'recipient_city', 'recipient_state', 'recipient_zip', 'redeemed', 'date_redeemed', '_redeemed_cartid', 'payment_method', 'payment_included_acct_credit', 'payment_included_campaign_gift_card', 'payment_included_web_purchased_gift_card', 'payment_was_promo_matched'])
+print("Filtering data for 2015...")
+giftcards_2015=giftcards[(giftcards['date_purchased'].apply(lambda x:x[0:4]) == '2015')]
+giftcards_acct_credit=pd.DataFrame(columns=['_buyer_acctid','GiftCard_Type'])
+giftcards_campaign_gift_card=pd.DataFrame(columns=['_buyer_acctid','GiftCard_Type'])
+giftcards_web_purchased_gift_card=pd.DataFrame(columns=['_buyer_acctid','GiftCard_Type'])
+giftcards_promo_matched=pd.DataFrame(columns=['_buyer_acctid','GiftCard_Type'])
+#Filling Giftcart purchase type
+giftcards_acct_credit['_buyer_acctid']=giftcards[(giftcards['payment_included_acct_credit']== 't')]._buyer_acctid
+giftcards_campaign_gift_card['_buyer_acctid']=giftcards[(giftcards['payment_included_campaign_gift_card']== 't')]._buyer_acctid
+giftcards_web_purchased_gift_card['_buyer_acctid']=giftcards[(giftcards['payment_included_web_purchased_gift_card']== 't')]._buyer_acctid
+giftcards_promo_matched['_buyer_acctid']=giftcards[(giftcards['payment_was_promo_matched']== 't')]._buyer_acctid
+#concatenate  all the 4 dataframes
+Giftcard_type = pd.concat([giftcards_acct_credit, giftcards_campaign_gift_card,giftcards_web_purchased_gift_card,giftcards_promo_matched])
+#apply groupby function on buyer account and purchase type
+Giftcard_type.groupby(['_buyer_acctid','GiftCard_Type'])
+Groupbuy_giftCard_Type=group_by_Accti_id.size()
+# Lets create the result csv 
+# script since it will be easy to track it.
+print("writing data to file ....")
+Groupbuy_giftCard_Type.to_csv("C://Users/Nameetha/Desktop/Stata/GiftType.csv")
+print("Complete")
