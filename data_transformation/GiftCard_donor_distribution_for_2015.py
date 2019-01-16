@@ -20,4 +20,5 @@ Data=Data.rename(columns={'_buyer_acctid':'count'})
 # script since it will be easy to track it.
 print("writing data to file ....")
 Data.to_csv(sys.argv[0]+'.csv')
+# Vivek: Where have we stored this csv file? 
 print("Complete")
