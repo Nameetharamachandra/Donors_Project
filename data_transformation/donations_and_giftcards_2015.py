@@ -1,5 +1,6 @@
-To identify the type of purchase
-#To count the number of giftcards purchased by each unique buyer account
+# Purpose: To count the number of giftcards and donations
+# by individuals every year
+
 import pandas  as pd
 from tqdm import tqdm
 import socket
@@ -24,5 +25,9 @@ Data.to_csv("C://Users/Nameetha/Desktop/Stata/Gift_Type.csv")
 # Vivek: The above file is in server in following location:
 # /home/test/donorschoose/Excel_Files
 print("Complete")
+
+# TODO: We need to run this for other years. Lets create 
+# a function where we pass the year and filename of final
+# output file and the file is saved in a given location
 
 
