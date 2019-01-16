@@ -21,6 +21,8 @@ giftcard_2015.payment_was_promo_matched.replace(['t', 'f'], [1, 0], inplace=True
 Data=giftcard_2015.groupby(['_buyer_acctid'])[['payment_included_acct_credit','payment_included_campaign_gift_card','payment_included_web_purchased_gift_card','payment_was_promo_matched']].sum()
 print("writing data to file ....")
 Data.to_csv("C://Users/Nameetha/Desktop/Stata/Gift_Type.csv")
+# Vivek: The above file is in server in following location:
+# /home/test/donorschoose/Excel_Files
 print("Complete")
 
 
