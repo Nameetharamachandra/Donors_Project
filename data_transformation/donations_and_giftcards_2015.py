@@ -19,7 +19,14 @@ Total_donations=donations[(donations['donation_timestamp'].apply(lambda x:x[0:4]
 giftcards = pd.read_csv(path+'opendata_giftcards000.gz', escapechar='\\', names=['_giftcardid', 'dollar_tier', '_buyer_acctid', 'buyer_city', 'buyer_state', 'buyer_zip', 'date_purchased', '_buyer_cartid', '_recipient_acctid', 'recipient_city', 'recipient_state', 'recipient_zip', 'redeemed', 'date_redeemed', '_redeemed_cartid', 'payment_method', 'payment_included_acct_credit', 'payment_included_campaign_gift_card', 'payment_included_web_purchased_gift_card', 'payment_was_promo_matched'])
 print("Filtering data for 2015...")
 giftcards_2015=giftcards[(giftcards['date_purchased'].apply(lambda x:x[0:4]) == '2015')]
-
+# crete three new columns to filter the dollar tier
+giftcards_2015["dollar_under_10"]=giftcards_2015['dollar_tier']
+giftcards_2015["dollar_10_to_100"]=giftcards_2015['dollar_tier']
+giftcards_2015["dollar_100_and_up"]=giftcards_2015['dollar_tier']
+#replace the actual values with binary values for easy group by
+giftcards_2015.dollar_under_10.replace(['under_10', '100_and_up','10_to_100'], [1, 0,0], inplace=True)
+giftcards_2015.dollar_10_to_100.replace(['under_10', '100_and_up','10_to_100'], [0,0,1], inplace=True)
+giftcards_2015.dollar_100_and_up.replace(['under_10', '100_and_up','10_to_100'], [0, 1,0], inplace=True)
 giftcards_2015.payment_included_acct_credit.replace(['t', 'f'], [1, 0], inplace=True)
 giftcards_2015.payment_included_campaign_gift_card.replace(['t', 'f'], [1, 0], inplace=True)
 giftcards_2015.payment_included_web_purchased_gift_card.replace(['t', 'f'], [1, 0], inplace=True)
